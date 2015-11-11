@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<display-name>first steps servlet</display-name>	
+	
+	<servlet>
+      <servlet-name>sign</servlet-name>
+      <servlet-class>com.example.guestbook.SignGuestbookServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>sign</servlet-name>
+      <url-pattern>/sign</url-pattern>
+    </servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>RestletServlet</servlet-name>
+        <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+        <init-param>
+            <param-name>org.restlet.application</param-name>
+				<param-value>com.example.guestbook.FirstStepsApplication</param-value>
+        </init-param>
+    </servlet>
+
+    
+    <servlet-mapping>
+        <servlet-name>RestletServlet</servlet-name>
+        <url-pattern>/restlet</url-pattern>
+    </servlet-mapping>
+	
+	<!--
+		<servlet>
+		<servlet-name>RestletServlet2</servlet-name>
+        <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+        <init-param>
+            <param-name>org.restlet.application</param-name>
+				<param-value>com.example.restlet.HardcodedGreetingApplication</param-value>
+        </init-param>
+    </servlet>
+
+    
+    <servlet-mapping>
+        <servlet-name>RestletServlet2</servlet-name>
+        <url-pattern>/greeting</url-pattern>
+    </servlet-mapping>
+	-->
+			<servlet>
+		<servlet-name>RestletServletGuestbook</servlet-name>
+        <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+        <init-param>
+            <param-name>org.restlet.application</param-name>
+				<param-value>com.example.restlet.GuestbookApplication</param-value>
+        </init-param>
+    </servlet>
+
+    
+    <servlet-mapping>
+        <servlet-name>RestletServletGuestbook</servlet-name>
+        <url-pattern>/guestbook/*</url-pattern>
+    </servlet-mapping>
+
+	
+
+    <welcome-file-list>
+        <welcome-file>guestbook.jsp</welcome-file>
+    </welcome-file-list>
+
+    <filter>
+      <filter-name>ObjectifyFilter</filter-name>
+      <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+      <filter-name>ObjectifyFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <listener>
+      <listener-class>com.example.guestbook.OfyHelper</listener-class>
+    </listener>
+</web-app>
